@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bodymassindex/bmicalculator.dart';
 import 'package:bodymassindex/result_page.dart';
 import 'package:flutter/material.dart';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int age = 20;
   int height = 120;
   double weight = 50;
+  bool liteScrolling = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //GENDER CONTAINER
                   Expanded(
                     child: ShadowContainer(
-                      height: 300,
+                      height: 300, // ✅ taller to fit the switch
                       shadowColor: Colors.purple,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -128,11 +130,34 @@ class _HomeScreenState extends State<HomeScreen> {
                               Icon(Icons.woman, size: 70),
                             ],
                           ),
+
+                          SizedBox(height: 8),
+
+                          // ✅ LiteRollingSwitch placed right below the icons
+                          FittedBox(
+                            child: LiteRollingSwitch(
+                              value: liteScrolling,
+                              textOn: '',
+                              textOff: '',
+                              colorOn: Color(0xff586EE6),
+                              colorOff: Color(0xff586EE6),
+                              iconOn: Icons.tune,
+                              iconOff: Icons.tune_outlined,
+                              textSize: 14,
+                              onChanged: (val) {
+                                setState(() {
+                                  liteScrolling = val;
+                                });
+                              },
+                              onTap: () {},
+                              onDoubleTap: () {},
+                              onSwipe: () {},
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  //gender container ended
                 ],
               ),
               SizedBox(height: 12),
