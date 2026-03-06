@@ -191,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
 
                                 childDelegate: ListWheelChildBuilderDelegate(
-                                  childCount: 100,
+                                  childCount: 201,
                                   builder: (context, index) {
                                     return RotatedBox(
                                       quarterTurns: 3,

@@ -14,6 +14,7 @@ class BmiCalculator {
   }
 
   String getRating() {
+    double bmi = calculateBmi();
     if (bmi > 25) {
       return 'Overweight';
     } else if (bmi > 18) {

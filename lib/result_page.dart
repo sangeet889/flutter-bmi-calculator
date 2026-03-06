@@ -11,6 +11,36 @@ class ResultPage extends StatelessWidget {
   final String calculateBmi;
   final String rating;
 
+  Color _ratingColor() {
+    switch (rating) {
+      case 'Obese':
+        return Colors.red;
+      case 'Overweight':
+        return Colors.orange;
+      case 'Normal':
+        return Colors.green;
+      case 'Underweight':
+        return Colors.blue;
+      default:
+        return Colors.black;
+    }
+  }
+
+  String _ratingMessage() {
+    switch (rating) {
+      case 'Obese':
+        return 'Consider consulting a doctor for a health plan.';
+      case 'Overweight':
+        return 'Try to maintain a balanced diet and exercise.';
+      case 'Normal':
+        return 'You have a normal body weight. Good job!';
+      case 'Underweight':
+        return 'Try to eat more nutritious meals to gain weight.';
+      default:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +77,7 @@ class ResultPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: _ratingColor(),
                         ),
                       ),
                       Text(
@@ -58,7 +88,8 @@ class ResultPage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'You have a normal body weight.Good job',
+                        _ratingMessage(),
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
@@ -75,6 +106,7 @@ class ResultPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
+              SizedBox(height: 15),
             ],
           ),
         ),
